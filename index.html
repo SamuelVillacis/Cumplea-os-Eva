@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>¡Felices 15 Años, Eva! 🌸👑</title>
+  
+  <!-- Bootstrap 5 CSS (Local & CDN fallback) -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Mobile Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Contenedor optimizado para celular -->
+  <div class="app-container">
+
+    <!-- HEADER / HERO -->
+    <header class="text-center pt-2 pb-1">
+      <span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-3 py-2 mb-2">
+        <i class="bi bi-stars text-warning me-1"></i> Mis 15 Años
+      </span>
+      <h1 class="h2 fw-bold text-dark mb-1">¡Feliz Cumpleaños, Eva!</h1>
+      <p class="text-muted small px-2">
+        Blanca y toda tu familia tienen un ramo de flores y una gran sorpresa para ti...
+      </p>
+    </header>
+
+    <!-- TARJETA DINÁMICA DE MENSAJE DE BLANCA -->
+    <div class="dog-dialog-wrapper">
+      <div class="dog-speech-bubble" id="dog-speech">
+        <i class="bi bi-chat-heart text-danger me-1"></i>
+        <span id="dog-speech-text">¡Guau guau! ¡Soy Blanca! 🐾 ¡Felices 15 Años, Eva! 💐</span>
+      </div>
+    </div>
+
+    <!-- BLANCA DINÁMICA CON SU CHAPITA 'B' Y RAMO DE FLORES -->
+    <div class="text-center my-1">
+      <div class="dog-stage" id="dog-stage" title="¡Toca a Blanca para interactuar!">
+        
+        <svg class="dog-svg" viewBox="0 0 240 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Pelaje dorado principal -->
+            <linearGradient id="dogFurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffdf8d" />
+              <stop offset="50%" stop-color="#f5be58" />
+              <stop offset="100%" stop-color="#dc972b" />
+            </linearGradient>
+
+            <!-- Pelaje de orejas acarameladas -->
+            <linearGradient id="dogEarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#e8a342" />
+              <stop offset="60%" stop-color="#ca7c1c" />
+              <stop offset="100%" stop-color="#a8600d" />
+            </linearGradient>
+
+            <!-- Pecho y hocico crema suave -->
+            <linearGradient id="dogCreamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fffbf0" />
+              <stop offset="100%" stop-color="#fae7bd" />
+            </linearGradient>
+
+            <!-- Corona y medalla dorada -->
+            <linearGradient id="crownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffe57f" />
+              <stop offset="50%" stop-color="#ffb300" />
+              <stop offset="100%" stop-color="#ff8f00" />
+            </linearGradient>
+
+            <!-- Lazo rojo ramo -->
+            <linearGradient id="bowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff5277" />
+              <stop offset="100%" stop-color="#c2185b" />
+            </linearGradient>
+          </defs>
+
+          <!-- Colita peluda que se mueve de felicidad -->
+          <g class="dog-tail">
+            <path d="M 180 198 C 215 188, 238 145, 218 120 C 206 108, 194 122, 204 135 C 216 152, 198 182, 175 192 Z" fill="url(#dogFurGrad)" stroke="#c88220" stroke-width="2" stroke-linejoin="round" />
+            <path d="M 215 130 Q 225 138 212 148" stroke="#fce4a6" stroke-width="2" fill="none" stroke-linecap="round" />
+          </g>
+
+          <!-- Grupo de Cuerpo y Cabeza -->
+          <g class="dog-body-group">
+
+            <!-- Cuerpo del perrito -->
+            <ellipse cx="120" cy="208" rx="66" ry="58" fill="url(#dogFurGrad)" stroke="#c88220" stroke-width="2" />
+            <!-- Pecho peludo crema suave -->
+            <path d="M 90 180 C 85 210, 100 238, 120 238 C 140 238, 155 210, 150 180 C 142 195, 128 202, 120 202 C 112 202, 98 195, 90 180 Z" fill="url(#dogCreamGrad)" />
+
+            <!-- Oreja Izquierda caída -->
+            <g class="dog-ear-left">
+              <path d="M 66 94 C 44 98, 30 125, 36 156 C 40 176, 56 186, 70 180 C 78 176, 78 152, 75 132 Z" fill="url(#dogEarGrad)" stroke="#9c5609" stroke-width="2" stroke-linejoin="round" />
+              <path d="M 44 128 C 42 150, 52 168, 62 170" stroke="#f6bb68" stroke-width="2" fill="none" stroke-linecap="round" />
+            </g>
+
+            <!-- Oreja Derecha caída -->
+            <g class="dog-ear-right">
+              <path d="M 174 94 C 196 98, 210 125, 204 156 C 200 176, 184 186, 170 180 C 162 176, 162 152, 165 132 Z" fill="url(#dogEarGrad)" stroke="#9c5609" stroke-width="2" stroke-linejoin="round" />
+              <path d="M 196 128 C 198 150, 188 168, 178 170" stroke="#f6bb68" stroke-width="2" fill="none" stroke-linecap="round" />
+            </g>
+
+            <!-- Cabeza del perrito -->
+            <ellipse cx="120" cy="116" rx="64" ry="54" fill="url(#dogFurGrad)" stroke="#c88220" stroke-width="2" />
+            <path d="M 112 65 Q 120 72 128 65 Q 124 78 120 80 Q 116 78 112 65 Z" fill="#fff0c7" />
+
+            <!-- Corona de 15 años elegante -->
+            <g transform="translate(100, 38)">
+              <polygon points="20,0 27,15 38,5 34,22 6,22 2,5 13,15" fill="url(#crownGrad)" stroke="#e67e00" stroke-width="1.2" />
+              <circle cx="20" cy="3" r="2.5" fill="#e91e63" />
+              <circle cx="3" cy="7" r="2" fill="#00bcd4" />
+              <circle cx="37" cy="7" r="2" fill="#9c27b0" />
+              <text x="20" y="19" font-family="sans-serif" font-weight="900" font-size="7.5" fill="#5d2f00" text-anchor="middle">15</text>
+            </g>
+
+            <!-- Cejas tiernas -->
+            <ellipse cx="88" cy="94" rx="6" ry="2.5" fill="#b06915" />
+            <ellipse cx="152" cy="94" rx="6" ry="2.5" fill="#b06915" />
+
+            <!-- Ojos normales -->
+            <g class="eye-open">
+              <ellipse cx="90" cy="108" rx="9" ry="11.5" fill="#2c180b" />
+              <circle cx="87" cy="104" r="3.8" fill="#ffffff" />
+              <circle cx="93" cy="113" r="1.8" fill="#ffffff" />
+              <ellipse cx="90" cy="116" rx="4" ry="1.5" fill="#8d4b14" opacity="0.6" />
+
+              <ellipse cx="150" cy="108" rx="9" ry="11.5" fill="#2c180b" />
+              <circle cx="147" cy="104" r="3.8" fill="#ffffff" />
+              <circle cx="153" cy="113" r="1.8" fill="#ffffff" />
+              <ellipse cx="150" cy="116" rx="4" ry="1.5" fill="#8d4b14" opacity="0.6" />
+            </g>
+
+            <!-- Ojos felices -->
+            <g class="eye-happy">
+              <path d="M 78 112 Q 90 98 102 112" stroke="#2c180b" stroke-width="3.8" fill="none" stroke-linecap="round" />
+              <path d="M 138 112 Q 150 98 162 112" stroke="#2c180b" stroke-width="3.8" fill="none" stroke-linecap="round" />
+            </g>
+
+            <!-- Mejillas tiernas -->
+            <ellipse cx="76" cy="126" rx="10" ry="5.5" fill="#ff7f96" opacity="0.45" />
+            <ellipse cx="164" cy="126" rx="10" ry="5.5" fill="#ff7f96" opacity="0.45" />
+
+            <!-- Hocico color crema claro -->
+            <ellipse cx="120" cy="135" rx="27" ry="19" fill="url(#dogCreamGrad)" stroke="#db9c38" stroke-width="1.6" />
+
+            <!-- Nariz negra de perrito con brillo -->
+            <path d="M 111 123 C 111 119, 129 119, 129 123 C 129 129, 120 133, 120 133 C 120 133, 111 129, 111 123 Z" fill="#1f1816" />
+            <ellipse cx="116" cy="122" rx="2.5" ry="1.2" fill="#ffffff" opacity="0.75" />
+
+            <!-- Sonrisa de perrito -->
+            <path d="M 120 133 L 120 139" stroke="#3b2010" stroke-width="2" />
+            <path d="M 108 137 Q 120 142 132 137" fill="none" stroke="#3b2010" stroke-width="2" stroke-linecap="round" />
+
+            <!-- Lengua rosada jadeando feliz -->
+            <g class="dog-tongue">
+              <path d="M 113 138 C 111 149, 113 160, 120 161 C 127 160, 129 149, 127 138 Z" fill="#ff5e7e" stroke="#d82d54" stroke-width="1.3" />
+              <line x1="120" y1="139" x2="120" y2="155" stroke="#e04368" stroke-width="1.3" />
+            </g>
+
+            <!-- COLLAR DE BLANCA CON SU CHAPITA DORADA 'B' -->
+            <path d="M 88 158 Q 120 170 152 158" stroke="#e63963" stroke-width="4.5" fill="none" stroke-linecap="round" />
+            <g transform="translate(120, 168)">
+              <circle cx="0" cy="0" r="8" fill="url(#crownGrad)" stroke="#c47820" stroke-width="1.2" />
+              <text x="0" y="3.5" font-family="sans-serif" font-weight="900" font-size="8.5" fill="#5d2f00" text-anchor="middle">B</text>
+            </g>
+
+            <!-- Patitas doradas abrazando el ramo de flores -->
+            <ellipse cx="86" cy="190" rx="15" ry="12" fill="url(#dogFurGrad)" stroke="#c88220" stroke-width="1.8" />
+            <ellipse cx="154" cy="190" rx="15" ry="12" fill="url(#dogFurGrad)" stroke="#c88220" stroke-width="1.8" />
+
+            <!-- RAMO DE FLORES COLORIDO Y ELEGANTE -->
+            <g class="dog-bouquet">
+              <polygon points="96,236 144,236 160,182 80,182" fill="#fff5f7" stroke="#e8c7be" stroke-width="1.5" />
+              
+              <!-- Lazo rojo -->
+              <path d="M 92 208 Q 120 215 148 208" stroke="url(#bowGrad)" stroke-width="5" fill="none" stroke-linecap="round" />
+              <circle cx="120" cy="210" r="5.5" fill="#c2185b" />
+              <path d="M 115 210 L 104 235" stroke="url(#bowGrad)" stroke-width="3.5" stroke-linecap="round" />
+              <path d="M 125 210 L 136 235" stroke="url(#bowGrad)" stroke-width="3.5" stroke-linecap="round" />
+
+              <!-- Hojitas verdes -->
+              <path d="M 72 172 Q 62 152 78 149 Q 88 162 72 172 Z" fill="#4caf50" />
+              <path d="M 168 172 Q 178 152 162 149 Q 152 162 168 172 Z" fill="#4caf50" />
+
+              <!-- Rosas -->
+              <circle cx="120" cy="168" r="14" fill="#e63963" />
+              <circle cx="120" cy="168" r="8" fill="#ff6b8b" />
+              <circle cx="97" cy="164" r="12" fill="#ff758f" />
+              <circle cx="97" cy="164" r="6" fill="#ffaec0" />
+              <circle cx="143" cy="164" r="12" fill="#ff758f" />
+              <circle cx="143" cy="164" r="6" fill="#ffaec0" />
+
+              <!-- Margaritas amarillas -->
+              <circle cx="110" cy="148" r="5.5" fill="#ffb703" />
+              <circle cx="130" cy="148" r="5.5" fill="#ffb703" />
+            </g>
+
+          </g>
+        </svg>
+      </div>
+
+      <!-- BOTÓN PARA VER A BLANCA REAL -->
+      <div class="mb-3">
+        <button class="btn-real-pet" onclick="openRealPetModal()">
+          <i class="bi bi-camera-fill text-warning"></i> Ver foto real de Blanca 🐾
+        </button>
+      </div>
+
+      <!-- BOTÓN PRINCIPAL DE ABRIR REGALO -->
+      <button id="btn-open-surprise" class="btn btn-danger btn-lg rounded-pill w-100 py-3 shadow-sm fw-semibold">
+        <i class="bi bi-envelope-heart-fill me-2"></i> Abrir carta y recuerdos
+      </button>
+      <div class="text-muted small mt-2">
+        <i class="bi bi-hand-index-thumb"></i> Toca el botón o a Blanca para interactuar
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE CONTENIDO REVELABLE -->
+    <main id="surprise-content" class="mt-4">
+
+      <!-- SECCIÓN 1: GALERÍA DE RECUERDOS (8 FOTOS EN GRID MÓVIL DE 2 COLUMNAS) -->
+      <section class="mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-2 px-1">
+          <h2 class="h5 fw-bold text-dark mb-0">
+            <i class="bi bi-images text-danger me-1"></i> Recuerdos Inolvidables
+          </h2>
+          <span class="badge bg-light text-secondary border rounded-pill">8 fotos</span>
+        </div>
+        <p class="text-muted small mb-3 px-1">
+          Toca cualquier foto para verla en grande y leer su dedicatoria secreta:
+        </p>
+
+        <!-- Grid Responsive de 2 Columnas -->
+        <div class="row row-cols-2 g-2 g-sm-3">
+
+          <!-- Foto 1 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(0)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="80663945_1929840643825984_5153406189022740480_n.jpg" alt="Foto Eva 1" loading="lazy">
+                <span class="photo-badge-count">#1</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Primeras Sonrisas</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 0, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto 2 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(1)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="104467359_2120259758117404_8091098489337952115_n.jpg" alt="Foto Eva 2" loading="lazy">
+                <span class="photo-badge-count">#2</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Juntos en Familia</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 1, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto 3 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(2)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="506054200_9982438398459063_3584795084433827230_n.jpg" alt="Foto Eva 3" loading="lazy">
+                <span class="photo-badge-count">#3</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Sonrisa Radiante</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 2, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto 4 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(3)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="506815915_3766581643485199_3505512433295575853_n.jpg" alt="Foto Eva 4" loading="lazy">
+                <span class="photo-badge-count">#4</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Momentos Lindos</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 3, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto 5 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(4)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="507211594_3772006066276090_3072574327141203786_n.jpg" alt="Foto Eva 5" loading="lazy">
+                <span class="photo-badge-count">#5</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Siempre Cerca</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 4, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto 6 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(5)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="508793425_3775232629286767_3144584521456206383_n.jpg" alt="Foto Eva 6" loading="lazy">
+                <span class="photo-badge-count">#6</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Quinceañera</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 5, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto 7 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(6)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="510242110_3783850381758325_3835670269497896167_n.jpg" alt="Foto Eva 7" loading="lazy">
+                <span class="photo-badge-count">#7</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Aventuras</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 6, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto 8 -->
+          <div class="col">
+            <div class="photo-thumb-card shadow-sm" onclick="openPhotoDetail(7)">
+              <div class="photo-thumb-img-wrapper">
+                <img src="511322156_3780467918763238_5311807717233721463_n.jpg" alt="Foto Eva 8" loading="lazy">
+                <span class="photo-badge-count">#8</span>
+              </div>
+              <div class="photo-info-bar">
+                <span class="photo-title">Abrazo Infinito</span>
+                <button class="btn-mini-like" onclick="likeGridPhoto(event, 7, this)">
+                  ❤️ <span class="like-count">15</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: LA CARTA DIGITAL (Limpia y auténtica) -->
+      <section class="mb-4">
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+          <div class="card-header bg-danger text-white text-center py-3">
+            <h2 class="h5 mb-0 fw-bold">
+              <i class="bi bi-envelope-paper-heart me-1"></i> Carta para Eva
+            </h2>
+          </div>
+          <div class="card-body p-4 bg-white">
+            <p class="fw-bold text-danger fs-5 mb-3">Querida Eva:</p>
+
+            <p class="text-secondary lh-lg mb-3">
+              Te deseo lo mejor en este día tan especial. <strong>¡Ya son tus 15 años!</strong> Que Dios te bendiga siempre y te permita disfrutar de este día tan bonito y de muchos años más llenos de alegría, amor y felicidad.
+            </p>
+
+            <div class="letter-quote-box mb-3">
+              "Queremos que sepas cuánto te queremos y lo mucho que te apreciamos. Aunque hoy nos encontremos lejos, te mandamos un abrazo enorme, lleno de cariño, y nuestros mejores deseos."
+            </div>
+
+            <p class="text-secondary lh-lg mb-3">
+              Disfruta muchísimo de tus 15 años, hermanita. <strong>¡Te queremos un mundo entero!</strong>
+            </p>
+
+            <!-- Cierre cálido y limpio -->
+            <div class="text-end pt-3 border-top">
+              <p class="text-muted small mb-1">Con todo nuestro amor incondicional,</p>
+              <p class="h5 fw-bold text-danger mb-0">¡Feliz cumpleaños, Eva! ❤️</p>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-muted small py-3">
+      <p class="mb-0">✨ Celebrando los 15 años de Eva con amor de familia y Blanca 🐾✨</p>
+    </footer>
+
+  </div>
+
+  <!-- MODAL DE VISUALIZACIÓN DE FOTO Y DEDICATORIA (CON SOPORTE SWIPE TÁCTIL) -->
+  <div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-0 pb-1">
+          <h5 class="modal-title fs-6 fw-bold text-dark" id="modalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body p-3 text-center">
+          <!-- Imagen Principal -->
+          <div class="rounded-3 overflow-hidden bg-light mb-2" style="max-height: 55vh;">
+            <img id="modalImage" src="" class="img-fluid w-100" style="object-fit: contain; max-height: 55vh;" alt="Foto de Eva">
+          </div>
+          <!-- Indicador de swipe táctil -->
+          <div class="text-muted small mb-2" style="font-size: 0.75rem;">
+            <i class="bi bi-arrow-left-right text-danger me-1"></i> Desliza con el dedo para ver más fotos
+          </div>
+          <!-- Dedicatoria -->
+          <div class="p-3 bg-light rounded-3 mb-3 text-start border-start border-danger border-4">
+            <span class="badge bg-danger-subtle text-danger mb-1"><i class="bi bi-quote"></i> Dedicatoria</span>
+            <p id="modalNote" class="text-dark small mb-0 fst-italic"></p>
+          </div>
+          <!-- Controles de Navegación y Like -->
+          <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="prevPhoto()">
+              <i class="bi bi-chevron-left"></i> Anterior
+            </button>
+            <button class="btn btn-sm btn-danger rounded-pill px-3" onclick="likeModalPhoto()">
+              <i class="bi bi-heart-fill me-1"></i> <span id="modalLikesCount">15</span>
+            </button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="nextPhoto()">
+              Siguiente <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PARA VER LA FOTO REAL DE BLANCA -->
+  <div class="modal fade" id="realPetModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-0 pb-1">
+          <h5 class="modal-title fs-6 fw-bold text-dark">
+            <i class="bi bi-heart-fill text-danger me-1"></i> Blanca, tu compañera fiel 🐾
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body p-3 text-center">
+          <div class="rounded-3 overflow-hidden bg-light mb-3">
+            <img src="perrito_eva.jpg" class="img-fluid rounded-3" alt="Foto real de Blanca">
+          </div>
+          <p class="text-secondary small mb-0">
+            "¡Blanca siempre a tu lado, acompañándote en cada aventura y celebrando hoy tus 15 primaveras, Eva! 🐶💖"
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom Logic -->
+  <script src="script.js"></script>
+</body>
+</html>

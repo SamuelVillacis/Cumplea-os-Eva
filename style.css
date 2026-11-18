@@ -1,0 +1,364 @@
+/* ===================================================
+   CUMPLEAÑOS DE EVA (15 AÑOS) - MOBILE-FIRST STYLES
+   Diseño limpio basado en Bootstrap, optimizado para celular
+   =================================================== */
+
+:root {
+  --primary-color: #e63963;
+  --primary-hover: #c92a52;
+  --dog-fur-main: #f5be58;
+  --dog-fur-dark: #c6791e;
+  --bg-soft: #faf5f7;
+}
+
+body {
+  background-color: var(--bg-soft);
+  color: #2b2d42;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Contenedor tipo móvil */
+.app-container {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 14px 14px 45px;
+}
+
+/* Canvas de confeti */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1060;
+}
+
+/* ===================================================
+   TARJETA DINÁMICA DEL MENSAJE DEL PERRITO
+   Se expande y ajusta de forma 100% responsiva al texto
+   =================================================== */
+.dog-dialog-wrapper {
+  max-width: 340px;
+  margin: 0 auto 14px;
+  position: relative;
+  z-index: 10;
+}
+
+.dog-speech-bubble {
+  background: #ffffff;
+  border: 1.5px solid #ffccd5;
+  border-radius: 18px;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4a2837;
+  box-shadow: 0 4px 15px rgba(230, 57, 99, 0.1);
+  text-align: center;
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 1.45;
+  word-wrap: break-word;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.dog-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
+
+.dog-speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 9px 9px 0;
+  border-style: solid;
+  border-color: #ffccd5 transparent;
+  display: block;
+  width: 0;
+}
+
+/* ===================================================
+   ESCENARIO Y ANIMACIONES DEL PERRITO (GOLDEN RETRIEVER)
+   =================================================== */
+.dog-stage {
+  position: relative;
+  width: 230px;
+  height: 255px;
+  margin: 0 auto 10px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dog-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 18px rgba(198, 121, 30, 0.2));
+  transition: transform 0.25s ease;
+}
+
+.dog-stage:active .dog-svg {
+  transform: scale(0.96);
+}
+
+/* Animaciones */
+.dog-body-group {
+  animation: dog-breathe 3.4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes dog-breathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.02, 0.98) translateY(2px); }
+}
+
+/* Colita peluda batiéndose con emoción */
+.dog-tail {
+  transform-origin: 185px 190px;
+  animation: tail-wag-happy 0.75s ease-in-out infinite alternate;
+}
+
+@keyframes tail-wag-happy {
+  0% { transform: rotate(-16deg); }
+  100% { transform: rotate(18deg); }
+}
+
+/* Orejitas caídas suaves */
+.dog-ear-left {
+  transform-origin: 58px 90px;
+  animation: ear-bounce-l 2.8s ease-in-out infinite alternate;
+}
+
+.dog-ear-right {
+  transform-origin: 182px 90px;
+  animation: ear-bounce-r 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes ear-bounce-l {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-6deg); }
+}
+
+@keyframes ear-bounce-r {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(6deg); }
+}
+
+/* Lengua jadeando alegremente */
+.dog-tongue {
+  transform-origin: 120px 145px;
+  animation: tongue-pant 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes tongue-pant {
+  0% { transform: translateY(0) scaleY(1); }
+  100% { transform: translateY(2.5px) scaleY(1.08); }
+}
+
+/* Ramo de flores */
+.dog-bouquet {
+  transform-origin: 120px 185px;
+  animation: bouquet-bob 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes bouquet-bob {
+  0% { transform: translateY(0) rotate(-1deg); }
+  100% { transform: translateY(-4px) rotate(2deg); }
+}
+
+/* Ojos normales y felices */
+.eye-open {
+  transition: opacity 0.2s ease;
+}
+
+.eye-happy {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Estado de alegría al abrir o tocar */
+.dog-stage.happy .eye-open {
+  opacity: 0;
+}
+
+.dog-stage.happy .eye-happy {
+  opacity: 1;
+}
+
+.dog-stage.happy .dog-svg {
+  animation: dog-hop 0.85s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+@keyframes dog-hop {
+  0% { transform: translateY(0); }
+  35% { transform: translateY(-22px) scale(1.06); }
+  65% { transform: translateY(-4px) scale(0.97); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Botón para ver foto real */
+.btn-real-pet {
+  background: #ffffff;
+  border: 1px dashed #e6a258;
+  color: #925c14;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.btn-real-pet:hover,
+.btn-real-pet:active {
+  background: #fff8ee;
+  border-color: #c8812c;
+  color: #724408;
+}
+
+/* ===================================================
+   SECCIÓN DE CONTENIDO REVELABLE
+   =================================================== */
+#surprise-content {
+  display: none;
+}
+
+#surprise-content.revealed {
+  display: block;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================================
+   GALERÍA DE FOTOS (GRID RESPONSIVE 2 COLUMNAS)
+   =================================================== */
+.photo-thumb-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #f0e2e7;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.photo-thumb-card:active {
+  transform: scale(0.98);
+}
+
+.photo-thumb-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  background-color: #f7f1f3;
+  overflow: hidden;
+}
+
+.photo-thumb-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo-thumb-card:hover .photo-thumb-img-wrapper img {
+  transform: scale(1.04);
+}
+
+.photo-badge-count {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(43, 45, 66, 0.75);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.photo-info-bar {
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+}
+
+.photo-info-bar .photo-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #3f2635;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95px;
+}
+
+.btn-mini-like {
+  background: #fff0f3;
+  border: none;
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.btn-mini-like:active {
+  transform: scale(1.15);
+}
+
+/* ===================================================
+   CARTA ELEGANTE Y LIMPIA
+   =================================================== */
+.letter-quote-box {
+  background: #fff7f9;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #4b3040;
+}
+
+/* Modal en celular */
+.modal-content {
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
